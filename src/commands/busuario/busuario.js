@@ -1,10 +1,10 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('@discordjs/builders');
 const conection = require('../../db/mysql');
 
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('busuario')
-		.setDescription('Buscar un usuario de la base de datos')
+    data: new SlashCommandBuilder()
+        .setName('busuario')
+        .setDescription('Buscar un usuario de la base de datos')
         .addSubcommand(subcommand =>
             subcommand
                 .setName('nombre')
@@ -13,8 +13,9 @@ module.exports = {
                     option.setName('nombre')
                         .setDescription('Nombre del usuario')
                         .setRequired(true)))
-        ,
-	async execute(interaction) {
+        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+    ,
+    async execute(interaction) {
         // devolver argumentos
         const nombre = interaction.options.getString('nombre')
         // contenga nombre o tenga
@@ -25,5 +26,5 @@ module.exports = {
             interaction.channel.send(`Nombre: ${element.name} | Identificador: ${element.license}`);
         });
 
-	},
+    },
 };

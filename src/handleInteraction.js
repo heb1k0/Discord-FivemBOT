@@ -9,7 +9,7 @@ module.exports = async function handleInteraction(interaction) {
     }
 
     try {
-        if (command.data.name == 'cash') {
+        if (command.data.name == 'cash' || command.data.name == 'busuario') {
             if (!interaction.member.permissions.has('BAN_MEMBERS')) return interaction.reply({ content: 'No tienes permisos', ephemeral: true });
         }
         await command.execute(interaction);
