@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('@discordjs/builders');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const conection = require('../../db/mysql');
 
 module.exports = {
