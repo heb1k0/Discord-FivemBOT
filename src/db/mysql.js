@@ -10,4 +10,16 @@ const conection = mysql.createPool({
     database: process.env.DB_NAME,
 });
 
+// check cnection
+conection.getConnection()
+    .then((connection) => {
+        console.log('🚀[DB READY]🚀');
+        connection.release();
+    })
+    .catch((err) => {
+        // Paramos nodejs
+        console.error("⏰  !!! [DB ERROR] !!! ⏰");
+    });
+
+
 module.exports = conection;
